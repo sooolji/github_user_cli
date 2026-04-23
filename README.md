@@ -28,13 +28,13 @@ cmake ..
 make
 ```
 
-## 🤝 Let's Work Together
+## Let's Work Together
 
 This project is open-source and I would love your help to make it even better! Whether you are a beginner looking for your first open-source contribution or an advanced C++ developer, all kinds of contributions are welcome:
 
-- 🐛 **Found a bug?** Open an issue with a description and steps to reproduce.
-- ✨ **Have a feature idea?** Open an issue to discuss it, or directly submit a Pull Request!
-- 📖 **Documentation:** Help me improve this README or the inner code comments.
+- **Found a bug?** Open an issue with a description and steps to reproduce.
+- **Have a feature idea?** Open an issue to discuss it, or directly submit a Pull Request!
+- **Documentation:** Help me improve this README or the inner code comments.
 
 ### Quick Start for Contributors
 
@@ -44,10 +44,10 @@ This project is open-source and I would love your help to make it even better! W
 4. Make your changes and commit: `git commit -m "Add some cool feature"`
 5. Push to your branch and open a Pull Request!
 
-## 🚀 Some Cool Stuff (Future Features)
+## Some Cool Stuff (Future Features)
 
 Want to help out? Here are some awesome features we can add next:
 
-- **💎 Terminal Colors & Styling:** Add ANSI color codes or use a nice library like `fmt` to color-code different GitHub events (e.g., green for `PushEvent`, yellow for `StarEvent`).
-- **🔍 Filtering System:** Add flags to filter activity. For example: `github-activity username --type IssuesEvent` or `--limit 5`.
-- **📊 Export Features:** Add an option to export a user's recent activity to a Markdown or CSV file for report generation.
+- **Terminal Colors & Styling:** Add ANSI color codes or use a nice library like `fmt` to color-code different GitHub events (e.g., green for `PushEvent`, yellow for `StarEvent`).
+- **Filtering System:** Add flags to filter activity. For example: `github-activity username --type IssuesEvent` or `--limit 5`.
+- **Export Features:** Add an option to export a user's recent activity to a Markdown or CSV file for report generation.
