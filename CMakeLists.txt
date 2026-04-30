@@ -1,35 +1,61 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.16)
 
-# proyect name and version
 project(github-user-cli VERSION 1.0 LANGUAGES CXX)
 
-# define language version
+# global language settings
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
 
-# 1. search for external dependencies
+# helpful defaults for tooling
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
+# dependencies
 find_package(CURL REQUIRED)
 find_package(nlohmann_json REQUIRED)
 
-# 2. define header
-include_directories(include)
+# testing
+include(CTest)
 
-# 3. define executables
-add_executable(github-activity 
-    src/main.cpp 
-    src/api_client.cpp 
+# core library (reused by app + tests)
+
+add_library(github_user_cli_lib
+    src/api_client.cpp
     src/activity_parser.cpp
 )
 
-# 4. link librearies to the executables following cmake good practices
-target_link_libraries(github-activity PRIVATE 
-    CURL::libcurl 
-    nlohmann_json::nlohmann_json
+target_include_directories(github_user_cli_lib
+    PUBLIC
+        ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
 
-# 5. (opcional) config flags for compilation
+target_link_libraries(github_user_cli_lib
+    PUBLIC
+        CURL::libcurl
+        nlohmann_json::nlohmann_json
+)
+
+# main executable
+
+add_executable(github-activity
+    src/main.cpp
+)
+
+target_link_libraries(github-activity
+    PRIVATE
+        github_user_cli_lib
+)
+
+# warnings (target-scoped)
+
 if(MSVC)
-    target_compile_options(github-activity PRIVATE /W4)
+    target_compile_options(github_user_cli_lib PRIVATE /W4 /permissive-)
+    target_compile_options(github-activity PRIVATE /W4 /permissive-)
 else()
+    target_compile_options(github_user_cli_lib PRIVATE -Wall -Wextra -Wpedantic)
     target_compile_options(github-activity PRIVATE -Wall -Wextra -Wpedantic)
 endif()
+
+
+
+# unit tests (GoogleTest)
